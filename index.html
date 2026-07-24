@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEE Solar – Ingenieurbüro für erneuerbare Energien, Gifhorn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F2E30;
+    --paper:#F6F7F4;
+    --sun:#F2B705;
+    --sun-deep:#D99400;
+    --leaf:#3F7D5C;
+    --line: rgba(15,46,48,0.14);
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk', sans-serif;}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px; max-width:1080px; margin:0 auto;
+  }
+  .brand{font-family:'Space Grotesk'; font-weight:700; font-size:1.15rem; letter-spacing:-0.01em;}
+  .brand span{color:var(--sun-deep);}
+  nav a.cta{
+    background:var(--ink); color:var(--paper); padding:10px 20px; border-radius:100px;
+    font-size:0.9rem; font-weight:600; text-decoration:none;
+  }
+
+  /* HERO */
+  .hero{position:relative; overflow:hidden; padding:40px 0 80px; border-bottom:1px solid var(--line);}
+  .hero-inner{position:relative; z-index:1; padding-top:20px; text-align:center;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:600;
+    color:var(--leaf); background:rgba(63,125,92,0.1); padding:6px 14px; border-radius:100px; margin-bottom:24px;
+  }
+  h1{font-size:clamp(2.1rem, 5vw, 3.4rem); font-weight:700; letter-spacing:-0.02em; max-width:820px; margin:0 auto 20px;}
+  h1 em{font-style:normal; color:var(--sun-deep);}
+  .sub{font-size:1.05rem; color:rgba(15,46,48,0.72); max-width:560px; margin:0 auto 36px;}
+
+  /* Sun dial - signature element: rises as it shows typical savings */
+  .dial{
+    max-width:420px; margin:0 auto 40px; background:var(--card); border:1px solid var(--line);
+    border-radius:20px; padding:24px 28px; text-align:left;
+  }
+  .dial-row{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;}
+  .dial-label{font-size:0.85rem; color:rgba(15,46,48,0.6);}
+  .dial-track{height:10px; border-radius:100px; background:var(--line); overflow:hidden;}
+  .dial-fill{height:100%; width:0%; border-radius:100px; background:linear-gradient(90deg, var(--leaf), var(--sun)); transition:width 1.6s cubic-bezier(.2,.7,.2,1);}
+  .dial-num{font-family:'Space Grotesk'; font-weight:700; font-size:1.4rem;}
+
+  .btn-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink); color:var(--paper); padding:15px 30px; border-radius:100px;
+    font-weight:600; text-decoration:none; font-size:1rem;
+  }
+  .btn-secondary{
+    padding:15px 26px; border-radius:100px; font-weight:600; text-decoration:none; font-size:1rem;
+    border:1px solid var(--line);
+  }
+
+  /* TRUST STRIP */
+  .strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:22px 0;}
+  .strip .wrap{display:flex; justify-content:space-around; flex-wrap:wrap; gap:16px; font-size:0.85rem; color:rgba(15,46,48,0.65); text-align:center;}
+
+  /* BENEFITS */
+  section{padding:64px 0;}
+  .section-head{max-width:560px; margin:0 auto 40px; text-align:center;}
+  .section-head h2{font-size:1.9rem; margin-bottom:12px;}
+  .section-head p{color:rgba(15,46,48,0.68);}
+
+  .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  @media (max-width:800px){ .grid3{grid-template-columns:1fr;} }
+  .card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px;}
+  .card .num{font-family:'Space Grotesk'; font-weight:700; color:var(--sun-deep); font-size:0.85rem; letter-spacing:0.05em;}
+  .card h3{margin:10px 0 8px; font-size:1.1rem;}
+  .card p{font-size:0.92rem; color:rgba(15,46,48,0.68);}
+
+  /* FORM */
+  .form-section{background:var(--ink); color:var(--paper); border-radius:28px; margin:0 24px; padding:52px 32px;}
+  .form-section .wrap{padding:0; max-width:640px;}
+  .form-section h2{color:var(--paper); font-size:1.8rem; margin-bottom:10px; text-align:center;}
+  .form-section > .wrap > p{text-align:center; color:rgba(246,247,244,0.72); margin-bottom:32px;}
+
+  form{display:grid; gap:14px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media (max-width:520px){ .row2{grid-template-columns:1fr;} }
+  label{font-size:0.82rem; font-weight:600; color:rgba(246,247,244,0.85); display:block; margin-bottom:6px;}
+  input, select, textarea{
+    width:100%; padding:13px 14px; border-radius:10px; border:1px solid rgba(246,247,244,0.25);
+    background:rgba(246,247,244,0.06); color:var(--paper); font-family:'Inter'; font-size:0.95rem;
+  }
+  input::placeholder, textarea::placeholder{color:rgba(246,247,244,0.4);}
+  input:focus, select:focus, textarea:focus{outline:2px solid var(--sun); outline-offset:1px;}
+  select option{color:#111;}
+  .interest{display:flex; gap:10px; flex-wrap:wrap;}
+  .chip{
+    border:1px solid rgba(246,247,244,0.25); border-radius:100px; padding:10px 16px; font-size:0.88rem;
+    cursor:pointer; user-select:none;
+  }
+  .chip.active{background:var(--sun); border-color:var(--sun); color:var(--ink); font-weight:600;}
+  button[type=submit]{
+    margin-top:8px; background:var(--sun); color:var(--ink); border:none; padding:16px; border-radius:10px;
+    font-weight:700; font-size:1rem; cursor:pointer; font-family:'Space Grotesk';
+  }
+  button[type=submit]:hover{background:var(--sun-deep);}
+  .fine{font-size:0.78rem; color:rgba(246,247,244,0.55); text-align:center;}
+  .success{display:none; text-align:center; padding:20px; background:rgba(63,125,92,0.18); border-radius:12px; border:1px solid rgba(63,125,92,0.4);}
+
+  footer{padding:40px 24px; text-align:center; font-size:0.82rem; color:rgba(15,46,48,0.5);}
+  footer a{text-decoration:underline; cursor:pointer;}
+
+  /* Admin */
+  .admin-panel{max-width:820px; margin:0 auto; padding:24px;}
+  .admin-panel table{width:100%; border-collapse:collapse; font-size:0.85rem; background:var(--card); border-radius:12px; overflow:hidden;}
+  .admin-panel th, .admin-panel td{padding:10px 12px; border-bottom:1px solid var(--line); text-align:left;}
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">IEE <span>Solar</span></div>
+  <a class="cta" href="#anfrage">Kostenlose Einschätzung</a>
+</nav>
+
+<div class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Ingenieurbüro für erneuerbare Energien · Gifhorn und Umgebung</div>
+    <h1>Photovoltaik und Wärmepumpe <em>fachlich geplant</em>, nicht nur verkauft.</h1>
+    <p class="sub">Kostenlose, unverbindliche Einschätzung von Aness Dallali: was eine Photovoltaikanlage oder Wärmepumpe für Ihr Haus konkret bringt — Ersparnis, Förderung und Amortisationszeit.</p>
+    <p style="font-size:0.85rem; color:rgba(15,46,48,0.55); margin:-8px 0 28px;">Ein Angebot von Aness Dallali in Zusammenarbeit mit <a href="https://iee-solar.de" target="_blank" rel="noopener" style="text-decoration:underline;">IEE Solar GmbH</a></p>
+
+    <div class="dial">
+      <div class="dial-row">
+        <span class="dial-label">Typische Ersparnis / Jahr bei 4-Personen-Haushalt</span>
+        <span class="dial-num" id="dialNum">1.450 €</span>
+      </div>
+      <div class="dial-track"><div class="dial-fill" id="dialFill" style="width:78%"></div></div>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn-primary" href="#anfrage">Jetzt Ersparnis berechnen lassen</a>
+      <a class="btn-secondary" href="#ablauf">Wie läuft das ab?</a>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <span>✓ Kostenlose Vor-Ort-Einschätzung</span>
+    <span>�� Unabhängige Beratung PV &amp; Wärmepumpe</span>
+    <span>✓ Förderungen im Blick</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Ihr Einsatzgebiet</h2>
+      <p>Vor-Ort-Beratung für Photovoltaik und Wärmepumpe im Umkreis von 100 km um Großenkneten/Ahlhorn (PLZ 26197).</p>
+    </div>
+    <div class="card" style="max-width:760px; margin:0 auto;">
+      <p style="text-align:center; font-size:0.98rem; line-height:1.9;">
+        Oldenburg · Bremen · Delmenhorst · Cloppenburg · Vechta · Wildeshausen · Wilhelmshaven · Osnabrück · Emden · Papenburg · Cuxhaven · Verden
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="ablauf">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>So einfach geht's</h2>
+      <p>Drei Schritte bis zur ersten eigenen Kilowattstunde.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <div class="num">SCHRITT 1</div>
+        <h3>Formular ausfüllen</h3>
+        <p>Zwei Minuten, ein paar Eckdaten zu Ihrem Haus und Ihrem Verbrauch.</p>
+      </div>
+      <div class="card">
+        <div class="num">SCHRITT 2</div>
+        <h3>Persönlicher Rückruf</h3>
+        <p>Ich melde mich innerhalb von 24 Stunden mit einer ersten Einschätzung.</p>
+      </div>
+      <div class="card">
+        <div class="num">SCHRITT 3</div>
+        <h3>Vor-Ort-Termin</h3>
+        <p>Unverbindliches Angebot inklusive Fördermöglichkeiten für Ihr Zuhause.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="form-section" id="anfrage">
+    <div class="wrap">
+      <h2>Ihre kostenlose Einschätzung</h2>
+      <p>Ich melde mich persönlich bei Ihnen — kein Callcenter.</p>
+
+      <div class="success" id="successMsg">
+        <strong>Danke, das hat geklappt!</strong><br>
+        Ich melde mich innerhalb von 24 Stunden bei Ihnen.
+      </div>
+
+      <form id="leadForm">
+        <div>
+          <label>Ich interessiere mich für (Mehrfachauswahl möglich)</label>
+          <div class="interest" id="interestChips">
+            <div class="chip" data-val="Photovoltaik">Photovoltaik</div>
+            <div class="chip" data-val="Wärmepumpe">Wärmepumpe</div>
+          </div>
+        </div>
+        <div class="row2">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" required placeholder="Vor- und Nachname">
+          </div>
+          <div>
+            <label for="plz">PLZ &amp; Ort</label>
+            <input id="plz" required placeholder="z. B. 45127 Essen">
+          </div>
+        </div>
+        <div class="row2">
+          <div>
+            <label for="telefon">Telefon</label>
+            <input id="telefon" type="tel" required placeholder="Für den Rückruf">
+          </div>
+          <div>
+            <label for="email">E-Mail</label>
+            <input id="email" type="email" placeholder="optional">
+          </div>
+        </div>
+        <div>
+          <label for="nachricht">Nachricht (optional)</label>
+          <textarea id="nachricht" rows="3" placeholder="z. B. Hausdach-Ausrichtung, aktuelle Heizung, Zeitrahmen"></textarea>
+        </div>
+        <button type="submit" id="submitBtn">Rückruf anfordern</button>
+        <p class="fine">Ihre Daten werden ausschließlich zur Kontaktaufnahme genutzt.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Ingenieurbüro für erneuerbare Energien</strong> — Aness Dallali, Gifhorn<br>
+  Tel. 01724314590 · a.dallali@iee-solar.de · <a href="https://iee-solar.de" target="_blank" rel="noopener">IEE Solar GmbH</a>
+  <br><br><a id="adminLink">Anfragen ansehen</a>
+</footer>
+
+<div class="admin-panel hidden" id="adminPanel">
+  <h3 style="margin-bottom:16px;">Eingegangene Anfragen</h3>
+  <table id="leadsTable">
+    <thead><tr><th>Datum</th><th>Name</th><th>Ort</th><th>Telefon</th><th>Interesse</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+  // Interest chips (Mehrfachauswahl)
+  const selectedInterests = new Set();
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('active');
+      if (chip.classList.contains('active')) {
+        selectedInterests.add(chip.dataset.val);
+      } else {
+        selectedInterests.delete(chip.dataset.val);
+      }
+    });
+  });
+
+  // Form submit -> localStorage fallback
+  document.getElementById('leadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet...';
+
+    const lead = {
+      datum: new Date().toLocaleString('de-DE'),
+      name: document.getElementById('name').value,
+      plz: document.getElementById('plz').value,
+      telefon: document.getElementById('telefon').value,
+      email: document.getElementById('email').value,
+      interesse: selectedInterests.size ? Array.from(selectedInterests).join(' + ') : 'nicht angegeben',
+      nachricht: document.getElementById('nachricht').value
+    };
+
+    try {
+      const key = 'lead:' + Date.now();
+      // Store in localStorage as fallback
+      localStorage.setItem(key, JSON.stringify(lead));
+      document.getElementById('leadForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    } catch (err) {
+      console.error('Speicherfehler', err);
+      alert('Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut.');
+      btn.disabled = false;
+      btn.textContent = 'Rückruf anfordern';
+    }
+  });
+
+  // Simple admin view (client-side only, not real security)
+  document.getElementById('adminLink').addEventListener('click', () => {
+    const pw = prompt('Zugangscode eingeben:');
+    if (pw !== 'sonne2026') { if(pw!==null) alert('Falscher Code.'); return; }
+    const panel = document.getElementById('adminPanel');
+    panel.classList.remove('hidden');
+    const tbody = document.querySelector('#leadsTable tbody');
+    tbody.innerHTML = '<tr><td colspan="5">Lade Anfragen...</td></tr>';
+    
+    try {
+      const rows = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('lead:')) {
+          const item = localStorage.getItem(key);
+          if (item) rows.push(JSON.parse(item));
+        }
+      }
+      
+      if (rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5">Noch keine Anfragen eingegangen.</td></tr>';
+        return;
+      }
+      
+      rows.sort((a,b) => (a.datum < b.datum ? 1 : -1));
+      tbody.innerHTML = rows.map(r => `<tr>
+        <td>${r.datum}</td><td>${r.name}</td><td>${r.plz}</td><td>${r.telefon}</td><td>${r.interesse}</td>
+      </tr>`).join('');
+      panel.scrollIntoView({behavior:'smooth'});
+    } catch (err) {
+      tbody.innerHTML = '<tr><td colspan="5">Fehler beim Laden.</td></tr>';
+    }
+  });
+</script>
+
+</body>
+</html>
