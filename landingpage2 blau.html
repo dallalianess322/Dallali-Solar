@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEE Solar – Ingenieurbüro für erneuerbare Energien, Gifhorn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B2A4A;
+    --paper:#F5F8FB;
+    --sun:#4FB3E8;
+    --sun-deep:#1D6FA5;
+    --leaf:#1B4F72;
+    --line: rgba(11,42,74,0.14);
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk', sans-serif;}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px; max-width:1080px; margin:0 auto;
+  }
+  .brand{font-family:'Space Grotesk'; font-weight:700; font-size:1.15rem; letter-spacing:-0.01em;}
+  .brand span{color:var(--sun-deep);}
+  nav a.cta{
+    background:var(--ink); color:var(--paper); padding:10px 20px; border-radius:100px;
+    font-size:0.9rem; font-weight:600; text-decoration:none;
+  }
+
+  /* HERO */
+  .hero{position:relative; overflow:hidden; padding:40px 0 60px; border-bottom:1px solid var(--line); background:linear-gradient(180deg, #EAF4FC 0%, var(--paper) 55%);}
+  .hero-inner{
+    position:relative; z-index:1; padding-top:20px;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:32px; align-items:center; text-align:left;
+  }
+  @media (max-width:860px){ .hero-inner{grid-template-columns:1fr; text-align:center;} .hero-illustration{order:-1;} }
+  .hero-illustration{width:100%; max-width:480px; justify-self:center;}
+  .hero-illustration svg{width:100%; height:auto; display:block;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:600;
+    color:var(--leaf); background:rgba(27,79,114,0.1); padding:6px 14px; border-radius:100px; margin-bottom:24px;
+  }
+  h1{font-size:clamp(2.1rem, 4.6vw, 3.1rem); font-weight:700; letter-spacing:-0.02em; margin:0 0 20px;}
+  h1 em{font-style:normal; color:var(--sun-deep);}
+  .sub{font-size:1.05rem; color:rgba(11,42,74,0.72); max-width:520px; margin:0 0 28px;}
+  @media (max-width:860px){ .sub{margin:0 auto 28px;} }
+
+  /* Sun dial - signature element: rises as it shows typical savings */
+  .dial{
+    max-width:420px; margin:0 0 32px; background:var(--card); border:1px solid var(--line);
+    border-radius:20px; padding:24px 28px; text-align:left;
+  }
+  @media (max-width:860px){ .dial{margin:0 auto 32px;} }
+  .dial-row{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;}
+  .dial-label{font-size:0.85rem; color:rgba(11,42,74,0.6);}
+  .dial-track{height:10px; border-radius:100px; background:var(--line); overflow:hidden;}
+  .dial-fill{height:100%; width:0%; border-radius:100px; background:linear-gradient(90deg, var(--leaf), var(--sun)); transition:width 1.6s cubic-bezier(.2,.7,.2,1);}
+  .dial-num{font-family:'Space Grotesk'; font-weight:700; font-size:1.4rem;}
+
+  .btn-row{display:flex; gap:14px; justify-content:flex-start; flex-wrap:wrap;}
+  @media (max-width:860px){ .btn-row{justify-content:center;} }
+  .btn-primary{
+    background:var(--ink); color:var(--paper); padding:15px 30px; border-radius:100px;
+    font-weight:600; text-decoration:none; font-size:1rem;
+  }
+  .btn-secondary{
+    padding:15px 26px; border-radius:100px; font-weight:600; text-decoration:none; font-size:1rem;
+    border:1px solid var(--line);
+  }
+
+  /* TRUST STRIP */
+  .strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:22px 0;}
+  .strip .wrap{display:flex; justify-content:space-around; flex-wrap:wrap; gap:16px; font-size:0.85rem; color:rgba(11,42,74,0.65); text-align:center;}
+
+  /* BENEFITS */
+  section{padding:64px 0;}
+  .section-head{max-width:560px; margin:0 auto 40px; text-align:center;}
+  .section-head h2{font-size:1.9rem; margin-bottom:12px;}
+  .section-head p{color:rgba(11,42,74,0.68);}
+
+  .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  @media (max-width:800px){ .grid3{grid-template-columns:1fr;} }
+  .card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px;}
+  .card .num{font-family:'Space Grotesk'; font-weight:700; color:var(--sun-deep); font-size:0.85rem; letter-spacing:0.05em;}
+  .card h3{margin:10px 0 8px; font-size:1.1rem;}
+  .card p{font-size:0.92rem; color:rgba(11,42,74,0.68);}
+
+  /* FORM */
+  .form-section{background:var(--ink); color:var(--paper); border-radius:28px; margin:0 24px; padding:52px 32px;}
+  .form-section .wrap{padding:0; max-width:640px;}
+  .form-section h2{color:var(--paper); font-size:1.8rem; margin-bottom:10px; text-align:center;}
+  .form-section > .wrap > p{text-align:center; color:rgba(246,247,244,0.72); margin-bottom:32px;}
+
+  form{display:grid; gap:14px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media (max-width:520px){ .row2{grid-template-columns:1fr;} }
+  label{font-size:0.82rem; font-weight:600; color:rgba(246,247,244,0.85); display:block; margin-bottom:6px;}
+  input, select, textarea{
+    width:100%; padding:13px 14px; border-radius:10px; border:1px solid rgba(246,247,244,0.25);
+    background:rgba(246,247,244,0.06); color:var(--paper); font-family:'Inter'; font-size:0.95rem;
+  }
+  input::placeholder, textarea::placeholder{color:rgba(246,247,244,0.4);}
+  input:focus, select:focus, textarea:focus{outline:2px solid var(--sun); outline-offset:1px;}
+  select option{color:#111;}
+  .interest{display:flex; gap:10px; flex-wrap:wrap;}
+  .chip{
+    border:1px solid rgba(246,247,244,0.25); border-radius:100px; padding:10px 16px; font-size:0.88rem;
+    cursor:pointer; user-select:none;
+  }
+  .chip.active{background:var(--sun); border-color:var(--sun); color:var(--ink); font-weight:600;}
+  button[type=submit]{
+    margin-top:8px; background:var(--sun); color:var(--ink); border:none; padding:16px; border-radius:10px;
+    font-weight:700; font-size:1rem; cursor:pointer; font-family:'Space Grotesk';
+  }
+  button[type=submit]:hover{background:var(--sun-deep);}
+  .fine{font-size:0.78rem; color:rgba(246,247,244,0.55); text-align:center;}
+  .success{display:none; text-align:center; padding:20px; background:rgba(63,125,92,0.18); border-radius:12px; border:1px solid rgba(63,125,92,0.4);}
+
+  footer{padding:40px 24px; text-align:center; font-size:0.82rem; color:rgba(11,42,74,0.5);}
+  footer a{text-decoration:underline; cursor:pointer;}
+
+  /* Admin */
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">IEE <span>Solar</span></div>
+  <a class="cta" href="#anfrage">Kostenlose Einschätzung</a>
+</nav>
+
+<div class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+    <div class="eyebrow">Ingenieurbüro für erneuerbare Energien · Gifhorn und Umgebung</div>
+    <h1>Photovoltaik und Wärmepumpe <em>fachlich geplant</em>, nicht nur verkauft.</h1>
+    <p class="sub">Kostenlose, unverbindliche Einschätzung von Aness Dallali: was eine Photovoltaikanlage oder Wärmepumpe für Ihr Haus konkret bringt — Ersparnis, Förderung und Amortisationszeit.</p>
+    <p style="font-size:0.85rem; color:rgba(11,42,74,0.55); margin:-8px 0 28px;">Ein Angebot von Aness Dallali in Zusammenarbeit mit <a href="https://iee-solar.de" target="_blank" rel="noopener" style="text-decoration:underline;">IEE Solar GmbH</a></p>
+
+    <div class="dial">
+      <div class="dial-row">
+        <span class="dial-label">Typische Ersparnis / Jahr bei 4-Personen-Haushalt</span>
+        <span class="dial-num" id="dialNum">1.450 €</span>
+      </div>
+      <div class="dial-track"><div class="dial-fill" id="dialFill" style="width:78%"></div></div>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn-primary" href="#anfrage">Jetzt Ersparnis berechnen lassen</a>
+      <a class="btn-secondary" href="#ablauf">Wie läuft das ab?</a>
+    </div>
+    </div>
+
+    <div class="hero-illustration">
+      <svg viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Haus mit Photovoltaikanlage auf dem Dach und Wärmepumpe im Garten">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#EAF4FC"/>
+            <stop offset="100%" stop-color="#FFFFFF"/>
+          </linearGradient>
+          <linearGradient id="roofGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0B2A4A"/>
+            <stop offset="100%" stop-color="#123A61"/>
+          </linearGradient>
+          <linearGradient id="panelGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1D6FA5"/>
+            <stop offset="100%" stop-color="#4FB3E8"/>
+          </linearGradient>
+        </defs>
+
+        <rect x="0" y="0" width="480" height="400" fill="url(#sky)"/>
+        <circle cx="400" cy="70" r="34" fill="#4FB3E8" opacity="0.35"/>
+        <circle cx="60" cy="55" r="20" fill="#1D6FA5" opacity="0.2"/>
+
+        <!-- ground -->
+        <rect x="0" y="330" width="480" height="70" fill="#DCEDFA"/>
+
+        <!-- house body -->
+        <rect x="120" y="200" width="200" height="130" fill="#FFFFFF" stroke="#0B2A4A" stroke-width="3"/>
+        <!-- roof -->
+        <polygon points="105,200 220,120 335,200" fill="url(#roofGrad)"/>
+        <!-- solar panels on roof -->
+        <g stroke="#0B2A4A" stroke-width="1.5">
+          <polygon points="140,190 220,132 226,136 150,193" fill="url(#panelGrad)"/>
+          <polygon points="155,193 232,138 238,142 165,196" fill="url(#panelGrad)"/>
+          <polygon points="170,196 244,144 250,148 180,199" fill="url(#panelGrad)"/>
+          <polygon points="225,136 300,190 292,193 219,140" fill="url(#panelGrad)"/>
+          <polygon points="237,142 308,193 300,196 231,146" fill="url(#panelGrad)"/>
+          <polygon points="249,148 296,181 288,184 243,152" fill="url(#panelGrad)"/>
+        </g>
+
+        <!-- door -->
+        <rect x="200" y="270" width="40" height="60" fill="#0B2A4A"/>
+        <!-- windows -->
+        <rect x="140" y="230" width="34" height="34" fill="#EAF4FC" stroke="#0B2A4A" stroke-width="2"/>
+        <rect x="266" y="230" width="34" height="34" fill="#EAF4FC" stroke="#0B2A4A" stroke-width="2"/>
+
+        <!-- heat pump unit -->
+        <g>
+          <rect x="336" y="288" width="70" height="42" rx="6" fill="#FFFFFF" stroke="#0B2A4A" stroke-width="3"/>
+          <circle cx="356" cy="309" r="12" fill="#EAF4FC" stroke="#1D6FA5" stroke-width="2"/>
+          <path d="M356 300 L356 318 M347 309 L365 309 M350 303 L362 315 M362 303 L350 315" stroke="#1D6FA5" stroke-width="1.6"/>
+          <rect x="378" y="298" width="20" height="4" fill="#4FB3E8"/>
+          <rect x="378" y="306" width="20" height="4" fill="#4FB3E8"/>
+          <rect x="378" y="314" width="20" height="4" fill="#4FB3E8"/>
+          <rect x="332" y="330" width="78" height="4" fill="#0B2A4A" opacity="0.15"/>
+        </g>
+
+        <!-- ground line under house -->
+        <rect x="80" y="330" width="270" height="4" fill="#0B2A4A" opacity="0.15"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <span>✓ Kostenlose Vor-Ort-Einschätzung</span>
+    <span>✓ Unabhängige Beratung PV &amp; Wärmepumpe</span>
+    <span>✓ Förderungen im Blick</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Ihr Einsatzgebiet</h2>
+      <p>Vor-Ort-Beratung für Photovoltaik und Wärmepumpe im Umkreis von 100 km um Großenkneten/Ahlhorn (PLZ 26197).</p>
+    </div>
+    <div class="card" style="max-width:760px; margin:0 auto;">
+      <p style="text-align:center; font-size:0.98rem; line-height:1.9;">
+        Oldenburg · Bremen · Delmenhorst · Cloppenburg · Vechta · Wildeshausen · Wilhelmshaven · Osnabrück · Emden · Papenburg · Cuxhaven · Verden
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="ablauf">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>So einfach geht's</h2>
+      <p>Drei Schritte bis zur ersten eigenen Kilowattstunde.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <div class="num">SCHRITT 1</div>
+        <h3>Formular ausfüllen</h3>
+        <p>Zwei Minuten, ein paar Eckdaten zu Ihrem Haus und Ihrem Verbrauch.</p>
+      </div>
+      <div class="card">
+        <div class="num">SCHRITT 2</div>
+        <h3>Persönlicher Rückruf</h3>
+        <p>Ich melde mich innerhalb von 24 Stunden mit einer ersten Einschätzung.</p>
+      </div>
+      <div class="card">
+        <div class="num">SCHRITT 3</div>
+        <h3>Vor-Ort-Termin</h3>
+        <p>Unverbindliches Angebot inklusive Fördermöglichkeiten für Ihr Zuhause.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="form-section" id="anfrage">
+    <div class="wrap">
+      <h2>Ihre kostenlose Einschätzung</h2>
+      <p>Ich melde mich persönlich bei Ihnen — kein Callcenter.</p>
+
+      <div class="success" id="successMsg">
+        <strong>Danke, das hat geklappt!</strong><br>
+        Ich melde mich innerhalb von 24 Stunden bei Ihnen.
+      </div>
+
+      <form id="leadForm" name="anfrage" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="anfrage">
+        <p class="hidden"><label>Bitte nicht ausfüllen: <input name="bot-field"></label></p>
+        <div>
+          <label>Ich interessiere mich für (Mehrfachauswahl möglich)</label>
+          <div class="interest" id="interestChips">
+            <div class="chip" data-val="Photovoltaik">Photovoltaik</div>
+            <div class="chip" data-val="Wärmepumpe">Wärmepumpe</div>
+          </div>
+          <input type="hidden" name="interesse" id="interesseField">
+        </div>
+        <div class="row2">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" required placeholder="Vor- und Nachname">
+          </div>
+          <div>
+            <label for="plz">PLZ &amp; Ort</label>
+            <input id="plz" name="plz" required placeholder="z. B. 45127 Essen">
+          </div>
+        </div>
+        <div class="row2">
+          <div>
+            <label for="telefon">Telefon</label>
+            <input id="telefon" name="telefon" type="tel" required placeholder="Für den Rückruf">
+          </div>
+          <div>
+            <label for="email">E-Mail</label>
+            <input id="email" name="email" type="email" placeholder="optional">
+          </div>
+        </div>
+        <div>
+          <label for="nachricht">Nachricht (optional)</label>
+          <textarea id="nachricht" name="nachricht" rows="3" placeholder="z. B. Hausdach-Ausrichtung, aktuelle Heizung, Zeitrahmen"></textarea>
+        </div>
+        <button type="submit" id="submitBtn">Rückruf anfordern</button>
+        <p class="fine">Ihre Daten werden ausschließlich zur Kontaktaufnahme genutzt.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Ingenieurbüro für erneuerbare Energien</strong> — Aness Dallali, Gifhorn<br>
+  Tel. 01724314590 · a.dallali@iee-solar.de · <a href="https://iee-solar.de" target="_blank" rel="noopener">IEE Solar GmbH</a>
+</footer>
+
+<script>
+  // Interest chips (Mehrfachauswahl) -> Wert ins verstecktes Feld schreiben, das Netlify mit abschickt
+  const selectedInterests = new Set();
+  const interesseField = document.getElementById('interesseField');
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('active');
+      if (chip.classList.contains('active')) {
+        selectedInterests.add(chip.dataset.val);
+      } else {
+        selectedInterests.delete(chip.dataset.val);
+      }
+      interesseField.value = selectedInterests.size ? Array.from(selectedInterests).join(' + ') : 'nicht angegeben';
+    });
+  });
+
+  // Form submit -> echtes Netlify Forms Handling (funktioniert nur, wenn über Netlify gehostet)
+  document.getElementById('leadForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet...';
+
+    const data = new URLSearchParams(new FormData(form)).toString();
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data
+    })
+      .then(() => {
+        form.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      })
+      .catch((err) => {
+        console.error('Sendefehler', err);
+        alert('Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie direkt an.');
+        btn.disabled = false;
+        btn.textContent = 'Rückruf anfordern';
+      });
+  });
+</script>
+
+</body>
+</html>
